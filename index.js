@@ -1,16 +1,34 @@
 const express = require('express')
+const { Client } = require('discord.js')
+
+const CONFIG = require('./config.json')
+
 const app = express()
+const bot = new Client()
+const count = {}
 
-let count = 0
+bot.login(CONFIG.token)
 
-app.use((_, res) => {
+bot.on('ready', () => bot.user.setActivity('Hosting on Deplux (https://deplux.io)'))
+bot.on('message', (msg) => {
+  if (msg.author.bot) return
+
+  count[msg.author.id] = (count[msg.author.id] || 0) + 1
+
+  if (count[msg.author.id] % 100) return
+  msg.channel.send('<@' + msg.author.id + '>님이 ' + count[msg.author.id] + '번째 메시지를 달성하셨습니다!')
+})
+
+app.use(async (_, res) => {
+  let str = ''
+  for (const id of Object.keys(count)) {
+    const user = await bot.users.fetch(id)
+    str += '<br />' + user.username + ': ' + count[id] + ' 메시지'
+  }
+
   res
     .set('Content-Type', 'text/html; charset=UTF-8')
-    .send(`Hello, world! you're ${toOrdinal(++count)} visitor!`)
+    .send(str)
 })
 
 app.listen(80)
-
-function toOrdinal (number) {
-  return number + (['st','nd','rd'][((number + 90) % 100 - 10) % 10 - 1] ||'th')
-}

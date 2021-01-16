@@ -1,7 +1,7 @@
 ## DepluxDockerExample
-[Deplux](https://deplux.io)를 이용하여 무료로 node.js 동적 호스팅을 할 수 있는 예제입니다.
+[Deplux](https://deplux.io)를 이용하여 무료로 discord.js 호스팅을 할 수 있는 예제입니다.
 
-### 동적 호스팅 시 확인해야 할것들
+### discord.js 호스팅 시 확인해야 할것들
 1. `Dockerfile`이 똑바로 작성되어 있는지 확인한다 ([파일 참고](Dockerfile))
 2. `package.json`에 `scripts.start`가 명시되어 있는지 확인한다 ([파일 참고](package.json))
 3. 웹 호스팅시 listen할 포트가 `80`번으로 설정되어 있는지 확인한다
@@ -20,7 +20,9 @@ hosting.zip
 ㄴ package.json
 ```
 
-### 무료 동적 호스팅 사용법
+### 무료 discord.js 호스팅 사용법
+* `config.json`을 수정해 토큰을 입력한다
+* `npm run build`를 입력해 .zip 압축파일을 만든다
 * `Deplux#6728` 봇이 있는 채널에 `!deplux`를 입력해 가입한다
 * `!hosting`을 입력해 호스팅 관리 메뉴로 들어가 새 호스팅을 생성한다
 * DM으로 인증 번호가 오면 [이곳](https://deplux.io/Active)에서 호스팅을 활성화 한다

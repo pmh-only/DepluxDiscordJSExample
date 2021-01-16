@@ -1,8 +1,13 @@
 {
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "dpt --zip"
   },
   "dependencies": {
+    "discord.js": "^12.5.1",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "depluxtools": "^1.0.5"
   }
 }
